@@ -47,8 +47,7 @@ ReactDOM.render(
       <Route path="/resources" component={Resources} />
       <Route path="/events" component={Events} />
       <Route path="/channels" component={Channel} />
-      <Route path="/channel/:channelId" component={ChannelBox} />  
-      <Route path="/join-step2" component={JoinDetail} />
+      <Route path="/channel/:channelId" component={ChannelBox} /> 
            
     </Route>
   </Router>

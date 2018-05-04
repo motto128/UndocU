@@ -11,7 +11,7 @@ class ChannelBox extends React.Component {
         super(props);
         this.state = {
                 eventName:'',
-                eventDate: '',
+                //eventDate: '',
                 eventLoc:'',
                 eventLink:'',
                 eventDescr:''
@@ -19,7 +19,7 @@ class ChannelBox extends React.Component {
             
         };
         this.handleEName = this.handleEName.bind(this);
-    	this.handleEDate = this.handleEDate.bind(this);
+    	//this.handleEDate = this.handleEDate.bind(this);
         this.handleELoc = this.handleELoc.bind(this);
     	this.handleELink = this.handleELink.bind(this);
         this.handleEDescr = this.handleEDescr.bind(this);
@@ -28,9 +28,9 @@ class ChannelBox extends React.Component {
     handleEName(e) {
         this.setState({eventName: e.target.value});
     }
-    handleEDate(e) {
+    /*handleEDate(e) {
         this.setState({eventDate: e});
-    }
+    }*/
     handleELoc(e) {
         this.setState({eventLoc: e.target.value});
     }
@@ -47,11 +47,11 @@ class ChannelBox extends React.Component {
         /* Add a new Channel to the database */
         var channelName = this.props.params.channelId;
         console.log(this.props.params.channelId);
-        var d = this.state.eventDate.toString();
+        //var d = this.state.eventDate.toString();
         var postRef = firebase.database().ref('channel/'+channelName); //the channel in the JOITC
         var newPost = {
             eName: this.state.eventName,
-            eDate: d,
+            //eDate: d,
             eLoc: this.state.eventLoc,
             eLink: this.state.eventLink,
             eDescr: this.state.eventDescr,
@@ -62,7 +62,7 @@ class ChannelBox extends React.Component {
         
         this.setState({
             eventName:'',
-            eventDate: '',
+            //eventDate: '',
             eventLoc:'',
             eventLink:'',
             eventDescr:''
@@ -90,10 +90,6 @@ class ChannelBox extends React.Component {
                     
                         <List id = 'center'>
                             <p>Choose date and time of event:</p>
-                            <ListItem>
-                            
-                            
-                            </ListItem>
                             
                            
                             <ListItem>

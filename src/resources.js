@@ -27,8 +27,8 @@ class Resources extends React.Component {
               id: item,
               title: items[item].eName,
               descr: items[item].eDescr,
-              loc: items[item].eLoc,
-              date: items[item].eDate
+              loc: items[item].eLoc
+              //date: items[item].eDate
             
             });
           }
@@ -79,7 +79,7 @@ class Resources extends React.Component {
                             <br/><br/>
                             {item.loc}
                             <br/><br/>
-                            Date: {item.date}
+                            
                         </CardText>
                         <CardActions border>
                             <Button style={styles.buttonStyle} raised colored ripple href="http://depts.washington.edu/ecc/lwb/">View Page</Button>
