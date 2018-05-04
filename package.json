@@ -5,7 +5,8 @@
   "author": "Motto_Kuzzi",
   "private": true,
   "devDependencies": {
-    "react-scripts": "0.7.0"
+    "react-scripts": "0.7.0",
+    "homepage" : "https://motto128.github.io/UndocUHelp.github.io/"
   },
   "dependencies": {
     "firebase": "^4.12.0",
