@@ -1,12 +1,8 @@
 import React  from 'react';
-import Time from 'react-time';
 import './index.css';
 import { Link, hashHistory } from 'react-router';
 import { Textfield, Button, List, ListItem, ListItemContent, ListItemAction, Dialog, DialogContent, DialogTitle, DialogActions, Icon} from 'react-mdl';
 import firebase from 'firebase';
-import DatePicker from 'react-datepicker';
-import moment from 'moment';
-import 'react-datepicker/dist/react-datepicker.css';
 import noUserPic from './img/no-user-pic.png';
 
 class ChannelBox extends React.Component {
@@ -15,7 +11,7 @@ class ChannelBox extends React.Component {
         super(props);
         this.state = {
                 eventName:'',
-                eventDate: moment(),
+                eventDate: '',
                 eventLoc:'',
                 eventLink:'',
                 eventDescr:''
@@ -66,7 +62,7 @@ class ChannelBox extends React.Component {
         
         this.setState({
             eventName:'',
-            eventDate: moment(),
+            eventDate: '',
             eventLoc:'',
             eventLink:'',
             eventDescr:''
@@ -96,12 +92,7 @@ class ChannelBox extends React.Component {
                             <p>Choose date and time of event:</p>
                             <ListItem>
                             
-                            <DatePicker 
-                            inline selected={this.state.eventDate} 
-                            onChange={(e) => this.handleEDate(e)}
-                            showTimeSelect
                             
-                            />
                             </ListItem>
                             
                            
