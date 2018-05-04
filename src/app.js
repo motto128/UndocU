@@ -1,9 +1,9 @@
 import React from 'react';
 import './index.css';
-import { Link, hashHistory } from 'react-router'
+import { Link, hashHistory } from 'react-router';
 import { Textfield, Icon, IconButton, Button, Card, CardActions, CardMedia , CardMenu, CardTitle, CardText , Layout, Drawer, Header, Navigation, HeaderRow, Content } from 'react-mdl';
-import {SelectField, Option} from 'react-mdl-extra'
-import Navbar from './navbar'
+import {SelectField, Option} from 'react-mdl-extra';
+import Navbar from './navbar';
 import firebase from 'firebase';
 import Login from './login';
 import Join from './join';

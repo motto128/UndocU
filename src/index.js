@@ -20,7 +20,7 @@ import Channel from './channel';
 import ChannelBox from './channelbox';
 import Navbar from './navbar';
 
-import JoinDetail from './joinDetail';
+//import JoinDetail from './joinDetail';
 
 
 

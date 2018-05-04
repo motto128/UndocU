@@ -4,7 +4,7 @@ import { Link, hashHistory } from 'react-router'
 import { Textfield, Button, List, ListItem } from 'react-mdl';
 import firebase from 'firebase';
 import { Icon, IconButton, Card, CardActions, CardMedia , CardMenu, CardTitle, CardText , Layout, Drawer, Header, Navigation, HeaderRow, Content } from 'react-mdl'
-import MediaQuery from 'react-responsive';
+//import MediaQuery from 'react-responsive';
 
 
 class Login extends React.Component {
