@@ -61,7 +61,7 @@ class Login extends React.Component {
     return (
 
         <div id='card'>
-        <Card shadow={0} style={styles.cardStyle}>
+        <Card id = 'center' shadow={0} >
         <div className='signin' id='center'>
             <h2 className="signInText">Sign In</h2>
             <List>
@@ -105,15 +105,5 @@ class Login extends React.Component {
   }
 }
 
-const styles = {
-    buttonStyle:{
-        backgroundColor: "#2196F3"
-    },
-    cardStyle:{
-        width: "90%", 
-        margin: 'auto'
-        
-    }
-}
 
 export default Login;

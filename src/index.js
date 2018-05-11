@@ -19,8 +19,7 @@ import Home from './home';
 import Channel from './channel';
 import ChannelBox from './channelbox';
 import Navbar from './navbar';
-
-//import JoinDetail from './joinDetail';
+import MyEvents from './myEvents';
 
 
 
@@ -45,10 +44,10 @@ ReactDOM.render(
       <Route path="/login" component={Login} />
       <Route path="/about" component={AboutUs} />
       <Route path="/resources" component={Resources} />
-      <Route path="/events" component={Events} />
+      {/*<Route path="/events" component={Events} />*/}
       <Route path="/channels" component={Channel} />
-      <Route path="/channel/:channelId" component={ChannelBox} /> 
-           
+      <Route path="/channel/:channelId" component={ChannelBox} />
+      <Route path="/myEvents" component={MyEvents} />
     </Route>
   </Router>
   

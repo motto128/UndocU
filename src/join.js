@@ -4,7 +4,7 @@ import { Link, hashHistory } from 'react-router';
 import { Textfield, Button, List, ListItem } from 'react-mdl';
 import { Icon, IconButton, Card, CardActions, CardMedia , CardMenu, CardTitle, CardText , Layout, Drawer, Header, Navigation, HeaderRow, Content } from 'react-mdl';
 import firebase from 'firebase';
-import md5 from 'js-md5';
+import md5 from 'md5';
 
 /**
  * A form for signing up and logging into a website.
@@ -122,7 +122,7 @@ class Join extends React.Component {
     render() {
         return (
             <div id='card'>
-            <Card shadow={0} style={styles.cardStyle}>
+            <Card shadow={0} id = 'center'>
             <div className='signup' id='center'>
                 <h2 className="signInText">Sign Up</h2>
                 <List>
@@ -169,7 +169,7 @@ class Join extends React.Component {
                 </ListItem>
                 
                 <ListItem>
-                <Button style={styles.buttonStyle} raised colored ripple onClick={(e) => {this.signUp(e)}}>NEXT</Button>
+                <Button raised colored ripple onClick={(e) => {this.signUp(e)}}>NEXT</Button>
                 </ListItem>
 
                 <ListItem>
@@ -185,15 +185,5 @@ class Join extends React.Component {
     }
 }
 
-const styles = {
-    buttonStyle:{
-        backgroundColor: "#2196F3"
-    },
-    cardStyle:{
-        width: "90%", 
-        margin: 'auto'
-        
-    }
-}
 
 export default Join;

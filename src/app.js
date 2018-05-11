@@ -87,9 +87,4 @@ class App extends React.Component {
   }
 }
 
-const styles = {
-  navStyle:{
-      backgroundColor: "#2196F3"
-  }
-}
 export default App;

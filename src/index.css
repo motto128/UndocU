@@ -1,17 +1,10 @@
-/* .card{
-    
-    width: 1200px;
-    margin: auto;
-    padding-top: 10px
-} */
+
 
 #card {
     margin-top: 20px;
+
 }
 /* added this */
-.Header{
-    background-color: #2196F3;
-}
 .signInText{
     color: #4A4A4A;
 }

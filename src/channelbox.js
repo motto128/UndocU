@@ -3,7 +3,10 @@ import './index.css';
 import { Link, hashHistory } from 'react-router';
 import { Textfield, Button, List, ListItem, ListItemContent, ListItemAction, Dialog, DialogContent, DialogTitle, DialogActions, Icon} from 'react-mdl';
 import firebase from 'firebase';
+//import DatePicker from 'react-datepicker';
+//import 'react-datepicker/dist/react-datepicker.css';
 import noUserPic from './img/no-user-pic.png';
+//import moment from 'moment';
 
 class ChannelBox extends React.Component {
     
@@ -28,9 +31,9 @@ class ChannelBox extends React.Component {
     handleEName(e) {
         this.setState({eventName: e.target.value});
     }
-    /*handleEDate(e) {
-        this.setState({eventDate: e});
-    }*/
+   // handleEDate(e) {
+    //    this.setState({eventDate: e});
+    //}
     handleELoc(e) {
         this.setState({eventLoc: e.target.value});
     }
@@ -62,7 +65,7 @@ class ChannelBox extends React.Component {
         
         this.setState({
             eventName:'',
-            //eventDate: '',
+           // eventDate: d,
             eventLoc:'',
             eventLink:'',
             eventDescr:''
@@ -70,15 +73,11 @@ class ChannelBox extends React.Component {
          }); //empty out post (controlled input)
     }
 
-    /*editPost(event) {
-        //console.log(event.target.value);
-    }*/
-
     render() {
 
         var currentUser = firebase.auth().currentUser;
         var channelName = this.props.params.channelId;
-        var chanName = <ChannelList channelName={channelName} />
+        //var chanName = <ChannelList channelName={channelName} />
         //console.log(channelName);
   
         return(
@@ -90,7 +89,15 @@ class ChannelBox extends React.Component {
                     
                         <List id = 'center'>
                             <p>Choose date and time of event:</p>
+                            {/*<ListItem>
                             
+                            <DatePicker 
+                            inline selected={this.state.eventDate} 
+                            onChange={(e) => this.handleEDate(e)}
+                            showTimeSelect
+                            
+                            />
+                            </ListItem>*/}
                            
                             <ListItem>
 
@@ -171,14 +178,14 @@ class ChannelBox extends React.Component {
                         
                         
                     </div>
-                    {chanName} 
+                    {/*chanName*/} 
                 </div>
             
         );
     }
 }
 
-class ChannelList extends React.Component {
+{/*class ChannelList extends React.Component {
 
     constructor(props){
         super(props);
@@ -227,6 +234,8 @@ class ChannelList extends React.Component {
         // Create a list of <PostItem /> objects 
         console.log(this.state.postList);
         var chan = this.props.channelName;
+        console.log(chan);
+
         var postItems = this.state.postList.map((message) => {
             
             return <PostItem message={message} user={this.state.users[message.userId]} key={message.key} chan={chan}/>
@@ -234,29 +243,7 @@ class ChannelList extends React.Component {
         return (<List style={{width: '700px'}}>{postItems}</List>);
     }
 }
-/*
-class Item extends React.Component {
-    render() {
-        var avatar = (this.props.user.avatar !== '' ? this.props.user.avatar : noUserPic);
-        return (
-        <div>
-            <ListItem threeLine>
-                <ListItemContent avatar={avatar} subtitle={this.props.message.eDescr}>
-                    {this.props.message.eName}
-                    
-                
-                </ListItemContent>
-                <ListItemAction>
-                    <Button raised accent ripple>edit</Button>
-                </ListItemAction>
-            </ListItem>
-              
-        </div>
-              
-        );
-      }
-    
-}*/
+
 
 //A single post
 class PostItem extends React.Component {
@@ -276,15 +263,7 @@ class PostItem extends React.Component {
         //this.updatePost = this.updatePost.bind(this);
 	}
     // if the user click only on their own post will enable buttons to edit
-    /*showEdit() {
-        
-        var currentUser = firebase.auth().currentUser.uid; 
-        console.log(currentUser);
-        if (currentUser === this.props.message.userId) {
-            this.setState({edit: false});
-        }
-        console.log(this.state.edit);
-    }*/
+
     handleOpenDialog() {
         this.setState({
             openDialog: true
@@ -370,6 +349,6 @@ class PostItem extends React.Component {
             </div>
         );
     }
-}
+}*/}
 
 export default ChannelBox;

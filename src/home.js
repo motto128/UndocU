@@ -8,7 +8,7 @@ class Home extends React.Component {
         <div>
             <Layout fixedHeader>
             <Content>
-            <Card shadow={0} style={styles.cardStyle} >
+            <Card id='center' shadow={0} >
             {/* style={{width: '1200px', margin: 'auto', paddingTop: '10px'}} */}
                 <CardTitle style={{ color: '#fff', height: '250px', background: 'url(http://depts.washington.edu/ecc/lwb/wp-content/uploads/2017/11/cropped-35040525825_ae240e91fc_b-1.jpg) center / cover'}}> Welcome to UndocUHelp! </CardTitle>
                 <CardText style={{fontWeight: '400'}}>
@@ -19,8 +19,8 @@ class Home extends React.Component {
                 Getting through college is hard enough – but for undocumented students, the journey is even tougher. UndocUHelp provides undocumented students anonymous access to the resources they need, making it easy to discover organizations, safe spaces, and events where they can connect to community and receive specialized support. Designed as a platform for use by multiple organizations, UndocUHelp collects all the hard-to-find information about getting into college and succeeding as an undocumented student and makes it searchable in a single place.
                 </CardText>
                 <CardActions border>
-                    <a href="#/resources"><Button style={styles.buttonStyle} raised colored ripple>Start</Button></a>
-                    <a href="#/about"><Button style={styles.buttonStyle} raised colored ripple>Learn More</Button></a>
+                    <a href="#/resources"><Button  raised colored ripple>Start</Button></a>
+                    <a href="#/about"><Button raised colored ripple>Learn More</Button></a>
                 </CardActions>
                 
                 <CardMenu style={{color: '#fff'}}>
@@ -28,10 +28,9 @@ class Home extends React.Component {
                 </CardMenu>
             </Card>
 
-            <Grid>
-              <Cell cols="4">
-              <div id='card'>
-                  <Card shadow={0} style={styles.cardStyle} >
+            
+              <div id='card' >
+                  <Card id='center' shadow={0}>
                   {/* style={{width: '1200px', margin: 'auto', paddingTop: '10px'}} */} 
                       <CardTitle> Problem </CardTitle>
                       <CardText style={{fontWeight: '400'}}>
@@ -47,10 +46,10 @@ class Home extends React.Component {
                       
                   </Card>
                 </div>
-              </Cell>
-              <Cell cols="4">
+              
+              
               <div id='card'>
-                  <Card shadow={0} style={styles.cardStyle} >
+                  <Card id='center' shadow={0} >
                   {/* style={{width: '1200px', margin: 'auto', paddingTop: '10px'}} */} 
                       <CardTitle> Users & Needs </CardTitle>
                       <CardText style={{fontWeight: '400'}}>
@@ -79,10 +78,9 @@ class Home extends React.Component {
                       </CardMenu>
                   </Card>
                 </div>
-              </Cell>
-              <Cell cols="4">
+              
               <div id='card'>
-                  <Card shadow={0} style={styles.cardStyle} >
+                  <Card id='center' shadow={0}  >
                   {/* style={{width: '1200px', margin: 'auto', paddingTop: '10px'}} */} 
                       <CardTitle> Solution </CardTitle>
                       <CardText style={{fontWeight: '400'}}>
@@ -116,8 +114,7 @@ class Home extends React.Component {
                       </CardMenu>
                   </Card>
                 </div>
-              </Cell>
-            </Grid>
+              
 
             
          {/*    <div className="page-content">
@@ -166,19 +163,6 @@ class Home extends React.Component {
   }
 }
 
-const styles = {
-  buttonStyle:{
-      backgroundColor: "#2196F3",
-      marginRight: "15px",
-      marginLeft: "30px"
-  },cardStyle:{
-    width: "95%", 
-    margin: "auto", 
-    paddingTop: "10px"
-},SubcardStyle:{
-  width: "90%", 
-  margin: "auto"
-}
 
-}
+
 export default Home;
