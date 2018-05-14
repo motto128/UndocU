@@ -4,7 +4,7 @@ import App from './app';
 import AboutUs from './aboutUs';
 import Resources from './resources';
 import firebase from 'firebase';
-import { Router, Route, hashHistory, IndexRoute } from 'react-router'
+import { Router, Route, hashHistory} from 'react-router'
 
 //nice style bro
 import 'react-mdl/extra/material.css';
@@ -12,14 +12,13 @@ import 'react-mdl/extra/material.js';
 import "firebase/firestore";
 
 import './index.css';
-import Events from './events';
 import Login from './login';
 import Join from './join';
 import Home from './home';
 import Channel from './channel';
 import ChannelBox from './channelbox';
-import Navbar from './navbar';
 import MyEvents from './myEvents';
+import Organization from './organization';
 
 
 
@@ -44,6 +43,7 @@ ReactDOM.render(
       <Route path="/login" component={Login} />
       <Route path="/about" component={AboutUs} />
       <Route path="/resources" component={Resources} />
+      <Route path="/organization" component={Organization} />
       {/*<Route path="/events" component={Events} />*/}
       <Route path="/channels" component={Channel} />
       <Route path="/channel/:channelId" component={ChannelBox} />

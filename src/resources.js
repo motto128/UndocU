@@ -1,11 +1,10 @@
 import React from 'react';
 import './index.css';
 import { Card, CardActions, CardText, CardTitle, Button} from 'react-mdl';
-import {SelectField, Option, MenuItem} from 'react-mdl-extra';
+import {SelectField, Option} from 'react-mdl-extra';
 import firebase from 'firebase';
 import "firebase/firestore";
-
-// var citiesRef = db.collection("Organization"); 
+//import City from './data/wa.js'
 
 class Resources extends React.Component {
     
@@ -13,51 +12,89 @@ class Resources extends React.Component {
         super(props);
 
         this.state = {
-            items: []
+            items: [],
+            eventTag:'',
+            //eventCity:'',
+            eventOrg:''
         };
     
     }
     componentDidMount() {
-        const itemsRef = firebase.database().ref('channel/event');
-        itemsRef.on('value', (snapshot) => {
-          let items = snapshot.val();
-          let newState = [];
-          for (let item in items) {
-            newState.push({
-              id: item,
-              title: items[item].eName,
-              descr: items[item].eDescr,
-              loc: items[item].eLoc
-              //date: items[item].eDate
-            
+        var postRef = firebase.database().ref('channel/event');
+            postRef.on('value', (snapshot) => {
+                var postArray = []; //could also do this processing in render
+                snapshot.forEach(function(child){
+                    
+                        var message = child.val();
+                        message.key = child.key; //save the unique id for later
+                        postArray.push(message); //make into an array
+                
+                });
+                
+                postArray.sort((a,b) => b.time - a.time); //reverse order
+                this.setState({items:postArray});
             });
-          }
-          this.setState({
-            items: newState
-          });
-        });
-      }
+    }
+
+    handleETag(e) {
+        //e.preventDefault();
+        this.setState({eventTag: e});
+        var postRef = firebase.database().ref('channel/event');
+            postRef.on('value', (snapshot) => {
+                var postArray = []; //could also do this processing in render
+                snapshot.forEach(function(child){
+                    if (e === child.val().eTag) {
+                        var message = child.val();
+                        message.key = child.key; //save the unique id for later
+                        postArray.push(message); //make into an array
+                    }
+                });
+                
+                postArray.sort((a,b) => b.time - a.time); //reverse order
+                this.setState({items:postArray});
+            });
+        
+    }
+    handleEOrg(e) {
+        this.setState({eventOrg: e});
+        var postRef = firebase.database().ref('channel/event');
+            postRef.on('value', (snapshot) => {
+                var postArray = []; //could also do this processing in render
+                snapshot.forEach(function(child){
+                    if (e === child.val().userId) {
+                        var message = child.val();
+                        message.key = child.key; //save the unique id for later
+                        postArray.push(message); //make into an array
+                    }
+                });
+                
+                postArray.sort((a,b) => b.time - a.time); //reverse order
+                this.setState({items:postArray});
+            });
+        
+    }
 
   render() {
     return (
 
 
         <div className='center'>
-            <h2 style={{textAlign: 'center',color: '#4A4A4A'}}>Local Resources</h2>
+            <h2>Local Resources</h2>
             <div id='center' >
 
-                <SelectField  label={''} value={1}>
-                    <Option value={1}>Washington</Option>
-                    <Option value={1}>Oregon</Option>
-                    <Option value={1}>California</Option>
-                
+                {/*<City/>*/}
+
+                <SelectField label={'Catigories'} value={this.state.eventTag} onChange={(e) => this.handleETag(e)}>
+                    <Option value={1}>Educational</Option>
+                    <Option value={2}>Legal</Option>
+                    <Option value={3}>Social</Option>
+                    <Option value={4}>Other</Option>
                 </SelectField>
                
                     
-                <SelectField label={''} value={1}>
-                    <Option value={1}>Seattle</Option>
-                    <Option value={1}>Tacoma</Option>
-                    <Option value={1}>Bellevue</Option>
+                <SelectField label={'Orgainzations'} value={this.state.eventOrg} onChange={(e) => this.handleEOrg(e)}>
+                    <Option value='Dr6QtXWIFDVI8LPJ8M1NnlVca4k2'>University of Washington</Option>
+                    <Option value='NHXvcYwIUyaEQaH1KaR9tLj8cm13'>Ethinic Cultural Community</Option>    
             
                 </SelectField>
             
@@ -66,23 +103,21 @@ class Resources extends React.Component {
                                   
                 <div id='card'>
 
-                    <Card id='center' shadow={0} >
-                        <CardTitle expand style={{color: '#fff',height: '176px', background: 'url(http://depts.washington.edu/ecc/lwb/wp-content/uploads/2017/12/34876206422_8ec16fdde4_h.jpg) center / cover #46B6AC'}}>
+                    <Card id='post' >
+                        <CardTitle id='cardTitle' style={{ background: 'url(http://depts.washington.edu/ecc/lwb/wp-content/uploads/2017/12/34876206422_8ec16fdde4_h.jpg) center / cover #46B6AC'}}>
 
-                        {item.title}</CardTitle>
+                        {item.eName}</CardTitle>
                         <CardText>
-                            {item.descr}
-                            <br/><br/>
-                            Phone Number: (206)685-6301
+                            {item.eDescr}
                             <br/><br/>
                             Email: test@uw.edu
                             <br/><br/>
-                            {item.loc}
+                            Address: {item.eLoc}
                             <br/><br/>
                             
                         </CardText>
                         <CardActions border>
-                            <Button raised colored ripple href="http://depts.washington.edu/ecc/lwb/">View Page</Button>
+                            <Button raised colored ripple href={item.eLink}>Read more</Button>
                         </CardActions>
                     </Card>
                 </div>
@@ -90,8 +125,8 @@ class Resources extends React.Component {
                 
             
             <div id='card'>
-                <Card id='center' shadow={0} >
-                    <CardTitle expand style={{color: '#fff', height: '176px', background: 'url(http://depts.washington.edu/ecc/lwb/wp-content/uploads/2017/12/34876206422_8ec16fdde4_h.jpg) center / cover #46B6AC'}}>
+                <Card id='post' >
+                    <CardTitle id='cardTitle' style={{background: 'url(http://depts.washington.edu/ecc/lwb/wp-content/uploads/2017/12/34876206422_8ec16fdde4_h.jpg) center / cover #46B6AC'}}>
                     Leadership Without Borders</CardTitle>
                     <CardText>
                         Leadership Without Borders (LWB) was created with Undocumented Students in mind and with the mission to serve as a launch pad for students’ leadership, a space for community building, and a connection point for awareness as well as to resources and services for undocumented students.
@@ -111,8 +146,8 @@ class Resources extends React.Component {
             </div>
         
             <div id='card'>
-                <Card id='center' shadow={0} >
-                    <CardTitle style={{color: '#fff', height: '176px', background: 'url(http://depts.washington.edu/ecc/lwb/wp-content/uploads/2018/02/022.png) center / cover'}}>
+                <Card id='post'>
+                    <CardTitle id='cardTitle' style={{background: 'url(http://depts.washington.edu/ecc/lwb/wp-content/uploads/2018/02/022.png) center / cover'}}>
                     Spring Quarter 2018 Undocu Ally Training</CardTitle>
                     <CardText>
                         The Leadership Without Borders Center (LWB), founded on 2014 by staff at Kelly Ethnic Cultural Center, 
@@ -133,8 +168,8 @@ class Resources extends React.Component {
                 </Card>
             </div>
             <div id='card'>
-                <Card id='center' shadow={0} >
-                    <CardTitle style={{color: '#fff', height: '176px', background: 'url(http://www.washington.edu/omad/files/2017/09/OMAD-purple-only-banner.png) center / cover'}}>
+                <Card id='post'>
+                    <CardTitle id='cardTitle' style={{ background: 'url(http://www.washington.edu/omad/files/2017/09/OMAD-purple-only-banner.png) center / cover'}}>
                     UW, TheDream.US announce new scholarship partnership to benefit undocumented students</CardTitle>
                     <CardText>
                     The University of Washington and TheDream.US announced a new partnership this week that will provide scholarships 
@@ -153,8 +188,8 @@ class Resources extends React.Component {
                 </Card>
             </div>
             <div id='card'>
-                <Card id='center' shadow={0} >
-                    <CardTitle style={{color: '#fff', height: '176px', background: 'url(http://depts.washington.edu/ecc/lwb/wp-content/uploads/2016/07/lwb.png) center / cover'}}>
+                <Card id='post'>
+                    <CardTitle id='cardTitle' style={{ background: 'url(http://depts.washington.edu/ecc/lwb/wp-content/uploads/2016/07/lwb.png) center / cover'}}>
                     UW to Participate in National First-Generation College Celebration on November 8</CardTitle>
                     <CardText>
                     On November 8, the University of Washington joins the Council for Opportunity in Education, 

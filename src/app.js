@@ -1,12 +1,10 @@
 import React from 'react';
 import './index.css';
-import { Link, hashHistory } from 'react-router';
-import { Textfield, Icon, IconButton, Button, Card, CardActions, CardMedia , CardMenu, CardTitle, CardText , Layout, Drawer, Header, Navigation, HeaderRow, Content } from 'react-mdl';
+import { hashHistory } from 'react-router';
+import { Layout, Drawer, Header, Navigation, Content } from 'react-mdl';
 import {SelectField, Option} from 'react-mdl-extra';
 import Navbar from './navbar';
 import firebase from 'firebase';
-import Login from './login';
-import Join from './join';
 
 
 class App extends React.Component {
@@ -45,17 +43,16 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Layout fixedHeader fixedDrawer>
-          <Header waterfall style = {{color: '#fff'}}>
-            <HeaderRow title="UndocUHelp" className="Header">
+      {this.state.userId ?
+      <div>
+        <Layout fixedHeader fixedDrawer id='background'>
+          <Header title="UndocUHelp">
               
-              <Navigation className="sections" style={{paddingRight: '325px'}} >
+              <Navigation id='nav'>
                       <a href="#/home">HOME</a>
                       <a href="#/resources">RESOURCES</a>
+                      <a href="#/organization">ORGANIZATIONS</a>
                       <a href="#/about">ABOUT US</a>
-                      {!this.state.userId &&
-                      <a href="#/login">REGISTER / LOGIN</a>
-                      }
 
               </Navigation>
               <SelectField label={''} value={1} >
@@ -65,23 +62,52 @@ class App extends React.Component {
                 <Option value={4}>Deutsch</Option>
                 <Option value={5}>Português</Option>
               </SelectField>
-            </HeaderRow>
-             
               
           </Header>
           
-          
-         {this.state.userId &&
-          <Drawer title="Admin Settings" style={{width: '300px'}}>
+         
+          <Drawer title="Admin Settings" id='drawer'>
             <Navbar/>
           </Drawer>
-         }
-
-          {this.props.children}     
+          
+         
+         <Content>{this.props.children}</Content>
+         
         
         </Layout>
 
-      </div>  
+      </div>
+      : 
+      <div>
+      <Layout fixedHeader id='background'>
+        <Header title="UndocUHelp">
+            
+            <Navigation id='nav' >
+                    <a href="#/home">HOME</a>
+                    <a href="#/resources">RESOURCES</a>
+                    <a href="#/organization">ORGANIZATIONS</a>
+                    <a href="#/about">ABOUT US</a>
+                    <a href="#/login">REGISTER / LOGIN</a>
+                    
+
+            </Navigation>
+            <SelectField label={''} value={1} >
+              <Option value={1}>English</Option>
+              <Option value={2}>Español</Option>
+              <Option value={3}>Français</Option>
+              <Option value={4}>Deutsch</Option>
+              <Option value={5}>Português</Option>
+            </SelectField>
+            
+        </Header>
+        
+       {this.props.children}
+       
+      
+      </Layout>
+
+    </div>}
+    </div>
        
     )
   }

@@ -1,9 +1,8 @@
 import React from 'react';
 import './index.css';
 import { Link, hashHistory } from 'react-router'
-import { Textfield, Button, List, ListItem } from 'react-mdl';
+import { Textfield, Button, List, ListItem, Card} from 'react-mdl';
 import firebase from 'firebase';
-import { Icon, IconButton, Card, CardActions, CardMedia , CardMenu, CardTitle, CardText , Layout, Drawer, Header, Navigation, HeaderRow, Content } from 'react-mdl'
 //import MediaQuery from 'react-responsive';
 
 
@@ -61,7 +60,7 @@ class Login extends React.Component {
     return (
 
         <div id='card'>
-        <Card id = 'center' shadow={0} >
+        <Card id='post' >
         <div className='signin' id='center'>
             <h2 className="signInText">Sign In</h2>
             <List>

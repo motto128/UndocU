@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link, hashHistory } from 'react-router';
-import firebase from 'firebase';
 
 class Channel extends React.Component {
   render() {

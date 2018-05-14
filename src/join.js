@@ -1,8 +1,7 @@
 import React from 'react';
 import './index.css';
 import { Link, hashHistory } from 'react-router';
-import { Textfield, Button, List, ListItem } from 'react-mdl';
-import { Icon, IconButton, Card, CardActions, CardMedia , CardMenu, CardTitle, CardText , Layout, Drawer, Header, Navigation, HeaderRow, Content } from 'react-mdl';
+import { Textfield, Button, List, ListItem, Card } from 'react-mdl';
 import firebase from 'firebase';
 import md5 from 'md5';
 
@@ -122,7 +121,7 @@ class Join extends React.Component {
     render() {
         return (
             <div id='card'>
-            <Card shadow={0} id = 'center'>
+            <Card id='post'>
             <div className='signup' id='center'>
                 <h2 className="signInText">Sign Up</h2>
                 <List>
@@ -140,7 +139,7 @@ class Join extends React.Component {
                 <Textfield
                     onChange={this.handleNameChange}
                     error={this.state.name.err}
-                    label="name"
+                    label="name of organization"
                     floatingLabel
                     style={{width: '400px'}}
                 />

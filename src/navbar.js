@@ -1,38 +1,65 @@
 import React from 'react';
-import { Link, hashHistory } from 'react-router'
-import { Layout, Navigation, Drawer, Header, Textfield, Button, ListItem, ListItemContent, ListItemAction, Icon, List } from 'react-mdl';
+import { Link} from 'react-router';
+import { Navigation, Button, ListItem, ListItemContent} from 'react-mdl';
 import firebase from 'firebase';
 //top level Navbar for the app
 class NavBar extends React.Component {
   
   constructor(props){
     super(props);
-    this.state = {};
-    //this.channelName
+    this.state = {
+    };
   }
 
   channelName(e) {
     this.setState({name: e.target.value});
   }
-  createChannel() {
-    var link = "/channel/"+ this.state.name;
-    var hash = '#'+ this.state.name;
-    var create = <Link to={link} activeClassName="active">{hash}</Link>;
-    this.setState({add: this.create});
+  
+  componentDidMount() {
+  
+    var currentUser = firebase.auth().currentUser.uid;
+    // Add a listener for changes to the chirps object, and save in the state 
+    //this.setState({postCount:count});
+    var postRef = firebase.database().ref('channel/event');
+    postRef.on('value', (snapshot) => {
+        var count = 0; //could also do this processing in render
+        snapshot.forEach(function(child){
+            if (currentUser === child.val().userId) {
+              count++;
+            }
+        });
+        this.setState({postCount:count});
+    });
+
+    var nameRef = firebase.database().ref('users/'+currentUser);
+    var name = '';
+    nameRef.on('value', (snapshot) => {
+        name = snapshot.val().name;
+        console.log(name);
+        this.setState({userN:name});
+    });
   }
+
+  componentWillUnmount() {
+    //unregister listeners
+    firebase.database().ref('users').off();
+    firebase.database().ref('channel/event').off();
+  }
+
   logout() {
     firebase.auth().signOut();
   }
 
   render() {
-    //console.log(this.props.param.channelId);
+    var n = this.state.postCount + ' posts';
+    var userName = this.state.userN;
     return (
       <div>
         
           <Navigation>
             <div>
             <ListItem twoLine>
-              <ListItemContent avatar="person" subtitle="2 posts">Joe Motto</ListItemContent>
+              <ListItemContent avatar="person" subtitle={n}>{userName}</ListItemContent>
                 
             </ListItem>
             </div>

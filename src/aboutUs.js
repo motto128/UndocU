@@ -1,14 +1,15 @@
 import React from 'react';
-import { Card, CardActions, CardText, CardTitle, Button} from 'react-mdl';
+import { Card, CardText} from 'react-mdl';
 
 class AboutUs extends React.Component {
   render() {
     return (
         <div>
             <div id='card'>
-                <Card shadow={0} style={{width: '1200px', margin: 'auto', paddingTop: 'auto'}}>
-                    <CardText style={{fontWeight: '400'}}>
-                    <h2>About Us</h2>
+                <h2>About Us</h2>
+                <Card id='homeCard'>
+                    <CardText>
+                    
                     <p>UndocUHelp is a web app that brings together resource organizations that are dedicated
                     in providing Undocumented Students with advice and guidance through their college lives. This 
                     platform allows for resource organizations to sign up themselves and add all of their 

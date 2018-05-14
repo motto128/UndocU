@@ -1,7 +1,6 @@
 import React  from 'react';
 import './index.css';
-import { Link, hashHistory } from 'react-router';
-import { Textfield, Button, List, ListItem, ListItemContent, ListItemAction, Dialog, DialogContent, DialogTitle, DialogActions, Icon} from 'react-mdl';
+import { Card, Button, List, ListItem, ListItemContent, ListItemAction, Dialog, DialogContent, DialogTitle, DialogActions} from 'react-mdl';
 import firebase from 'firebase';
 
 class MyEvents extends React.Component {
@@ -17,7 +16,6 @@ class MyEvents extends React.Component {
                 this.setState({users:snapshot.val()});
             });
             
-            var name = this.props.channelName;
             var currentUser = firebase.auth().currentUser.uid;
             // Add a listener for changes to the chirps object, and save in the state 
     
@@ -25,7 +23,7 @@ class MyEvents extends React.Component {
             postRef.on('value', (snapshot) => {
                 var postArray = []; //could also do this processing in render
                 snapshot.forEach(function(child){
-                    if (currentUser == child.val().userId) {
+                    if (currentUser === child.val().userId) {
                         var message = child.val();
                         message.key = child.key; //save the unique id for later
                         postArray.push(message); //make into an array
@@ -36,6 +34,7 @@ class MyEvents extends React.Component {
                 this.setState({postList:postArray});
             });
         }
+
     
         //When component will be removed
         componentWillUnmount() {
@@ -45,25 +44,32 @@ class MyEvents extends React.Component {
         }
     
         render() {
-            var currentUser = firebase.auth().currentUser;
-            var channelName = this.props.params.channelId;
-
+            var size = this.state.postList.length;
+            //console.log(this.state.postCount);
             if(!this.state.users){
                 return null;
             }
     
             // Create a list of <PostItem /> objects 
             var chan = event;
-            console.log(chan);
-            var postItems = this.state.postList.map((message) => {
-                
-                return <PostItem message={message} user={this.state.users[message.userId]} key={message.key} chan={chan}/>
-            })
+            var postItems;
+            if (size === 0) {
+                postItems = <ListItem>You have not posted any events</ListItem>
+            } else {
+                postItems = this.state.postList.map((message) => {
+                    
+                    return <PostItem message={message} user={this.state.users[message.userId]} key={message.key} chan={chan}/>
+                })
+            }
             return (
             <div id='card'>
                 <div id='center'>
-                    <h1>Your Posted Events</h1>
-                    <List style={{width: '700px'}}>{postItems}</List>
+                    <h2>Your Posted Events</h2>
+                    <Card id='post' >
+                    
+                    <List>{postItems}</List>
+                  
+                    </Card>
                 </div>
             </div>);
         }
@@ -74,28 +80,23 @@ class MyEvents extends React.Component {
         
         constructor(props) {
             super(props)
-            this.state ={'edit': true};
+            this.state ={
+                'edit': true,
+                /*{
+                    eventName:'',
+                    eventDate: '',
+                    eventLoc:'',
+                    //eventCity:'',
+                    eventLink:'',
+                    eventDescr:''
+                }*/
+            };
     
-            //this.showEdit = this.showEdit.bind(this);
             this.deleteNote = this.deleteNote.bind(this);
             this.handleOpenDialog = this.handleOpenDialog.bind(this);
             this.handleCloseDialog = this.handleCloseDialog.bind(this);
-            this.handleOpenEdit = this.handleOpenEdit.bind(this);
-            this.handleCloseEdit = this.handleCloseEdit.bind(this);
-            this.editPost = this.editPost.bind(this);
-            this.handleCloseEdit = this.handleCloseEdit.bind(this);
-            //this.updatePost = this.updatePost.bind(this);
         }
-        // if the user click only on their own post will enable buttons to edit
-        /*showEdit() {
-            
-            var currentUser = firebase.auth().currentUser.uid; 
-            console.log(currentUser);
-            if (currentUser === this.props.message.userId) {
-                this.setState({edit: false});
-            }
-            console.log(this.state.edit);
-        }*/
+
         handleOpenDialog() {
             this.setState({
                 openDialog: true
@@ -107,44 +108,44 @@ class MyEvents extends React.Component {
                 openDialog: false
             });
         }
-         handleOpenEdit() {
-            this.setState({
-                openEdit: true
-            });
-        }
-    
-        handleCloseEdit() {
-            this.setState({
-                openEdit: false
-            });
-        }
+ 
         
         //deletes the specificly chosen post from the database log
         deleteNote(){
             firebase.database().ref('channel/event' +"/"+this.props.message.key).remove();
         }
         // reuploads the new edited text
-         editPost(e) {
+        /* editPost(e) {
             e.preventDefault();
-            var userRef = firebase.database().ref('channel/event' +"/"+this.props.message.key);
-            userRef.child('eName').set(this.state.post);
-            //this.setState({post: ''})
+            
+            //var newPostKey = firebase.database().ref().child('posts');
+            firebase.database().ref().child('channel/event' +"/"+this.props.message.key).update(
+                {
+                    eName:this.state.post
+                
+                }
+            );
+        
         }
         //changes the text in post 
         updatePost(e) {
             this.setState({post: e.target.value});
-        }
+        }*/
     
         render() {
             return (
                 <div>
+
+                    
                     <ListItem threeLine>
                         
-                        <ListItemContent avatar={this.props.message.avatar} subtitle={this.props.message.eDescr}>
+                        <ListItemContent avatar='person' subtitle={this.props.message.eDescr}>
                             {this.props.message.eName}
+                            
                         </ListItemContent>
                         
-                        <ListItemAction>
+                        
+                        {/*<ListItemAction>
                             <Button onClick={this.handleOpenEdit}>edit</Button>  
                             <Dialog open={this.state.openEdit}>
                                 <DialogTitle>Edit post</DialogTitle>
@@ -161,7 +162,7 @@ class MyEvents extends React.Component {
                                     <Button type='button' onClick={this.handleCloseEdit}>Canel</Button>
                                 </DialogActions>
                             </Dialog>         
-                        </ListItemAction>
+                        </ListItemAction>*/}
     
                         <ListItemAction>
                             <Button onClick={this.handleOpenDialog}>delete</Button>
@@ -178,6 +179,7 @@ class MyEvents extends React.Component {
                         </ListItemAction>
                         
                     </ListItem>
+                    
                 </div>
             );
         }

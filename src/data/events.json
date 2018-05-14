@@ -6,7 +6,8 @@
         "Id": 1,
         "College": "University of Washington",
         "Link": "http://depts.washington.edu/ecc/lwb/",
-        "Contact": 
+        "img":"url(http://depts.washington.edu/ecc/lwb/wp-content/uploads/2017/12/34876206422_8ec16fdde4_h.jpg)",
+        "Contact":
         {
             "Contact_Name": null,
             "Phone_Number": "2066856301",
@@ -47,6 +48,7 @@
         "Id": 2,
         "College": "None",
         "Link": "https://colectivalegal.org/",
+        "img":"url(https://colectivalegal.org/wp-content/uploads/2018/03/CincoaneraProgram.jpg)",
         "Contact": 
         {
             "Contact_Name": "Burien Office",
@@ -88,6 +90,7 @@
         "Id": 3,
         "College": "None",
         "Link": "https://colectivalegal.org/",
+        "img":"url(https://colectivalegal.org/wp-content/uploads/2018/03/IMG-4116.jpg)",
         "Contact": 
         {
             "Contact_Name": "Wenatchee Office",
@@ -129,6 +132,7 @@
         "Id": 4,
         "College": "None",
         "Link": "http://casa-latina.org/",
+        "img":"url(http://casa-latina.org/sites/casa-latina.org/files/styles/featured_image/public/featured/givebig%202018%20feature%20slide%20TY%20v4.png?itok=hi1bGz8A)",
         "Contact": 
         {
             "Contact_Name": "Sierra Golden",
@@ -170,6 +174,7 @@
         "Id": 5,
         "College": "None",
         "Link": "http://www.leapwa.org/",
+        "img":"url(http://www.leapwa.org/wp-content/uploads/2016/07/leap-logo-2.png)",
         "Contact": 
         {
             "Contact_Name": "LEAP",
@@ -211,6 +216,7 @@
         "Id": 6,
         "College": "None",
         "Link": "https://www.nwirp.org/",
+        "img":"url(https://www.nwirp.org/wp-content/uploads/2016/04/All-Staff-Photo-2017-e1511387626454.jpg)",
         "Contact": 
         {
             "Contact_Name": "Northwest Immigrant Rights Project",
@@ -252,6 +258,7 @@
         "Id": 7,
         "College": "None",
         "Link": "https://www.latinocommunityfund.org",
+        "img":"url(https://d3n8a8pro7vhmx.cloudfront.net/lcf/sites/1/meta_images/original/lcf_transparent_cropped.png?1439591728)",
         "Contact": 
         {
             "Contact_Name": "Latino Community Fund Seattle Office",
@@ -293,6 +300,7 @@
         "Id": 8,
         "College": "None",
         "Link": "https://www.latinocommunityfund.org",
+        "img":"url(https://d3n8a8pro7vhmx.cloudfront.net/lcf/pages/1/features/original/LCF_father_son_1200.jpg?1440113150)",
         "Contact": 
         {
             "Contact_Name": "Latino Community Fund Yakima Office",
@@ -334,6 +342,7 @@
         "Id": 9,
         "College": "None",
         "Link": "https://21progress.org",
+        "img":"url(https://21progress.org/wp-content/uploads/2017/10/21progress_slide_2017.jpg)",
         "Contact": 
         {
             "Contact_Name": "21 Progress Seattle Office",
