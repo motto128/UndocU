@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, Card, CardActions, CardTitle, CardText} from 'react-mdl';
+import { hashHistory } from 'react-router';
 
 
 class Home extends React.Component {

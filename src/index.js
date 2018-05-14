@@ -4,7 +4,7 @@ import App from './app';
 import AboutUs from './aboutUs';
 import Resources from './resources';
 import firebase from 'firebase';
-import { Router, Route, hashHistory} from 'react-router'
+import { Router, Route, hashHistory, IndexRoute} from 'react-router';
 
 //nice style bro
 import 'react-mdl/extra/material.css';
@@ -37,7 +37,7 @@ firebase.initializeApp(config);
 ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-      {/*<IndexRoute component={Navbar}/>*/}
+      {/*<IndexRoute component={Home}/>*/}
       <Route path="/home" component={Home} />
       <Route path="/join" component={Join} />
       <Route path="/login" component={Login} />
