@@ -55,13 +55,6 @@ class App extends React.Component {
                       <a href="#/about">ABOUT US</a>
 
               </Navigation>
-              <SelectField label={''} value={1} >
-                <Option value={1}>English</Option>
-                <Option value={2}>Español</Option>
-                <Option value={3}>Français</Option>
-                <Option value={4}>Deutsch</Option>
-                <Option value={5}>Português</Option>
-              </SelectField>
               
           </Header>
           
@@ -91,13 +84,6 @@ class App extends React.Component {
                     
 
             </Navigation>
-            <SelectField label={''} value={1} >
-              <Option value={1}>English</Option>
-              <Option value={2}>Español</Option>
-              <Option value={3}>Français</Option>
-              <Option value={4}>Deutsch</Option>
-              <Option value={5}>Português</Option>
-            </SelectField>
             
         </Header>
         
