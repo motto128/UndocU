@@ -79,12 +79,12 @@ class Resources extends React.Component {
 
 
         <div className='center'>
-            <h2>Local Resources</h2>
+            <h2>Events</h2>
             <div id='center' >
 
                 {/*<City/>*/}
 
-                <SelectField label={'Catigories'} value={this.state.eventTag} onChange={(e) => this.handleETag(e)}>
+                <SelectField label={'Categories'} value={this.state.eventTag} onChange={(e) => this.handleETag(e)}>
                     <Option value={1}>Educational</Option>
                     <Option value={2}>Legal</Option>
                     <Option value={3}>Social</Option>
@@ -92,7 +92,7 @@ class Resources extends React.Component {
                 </SelectField>
                
                     
-                <SelectField label={'Orgainzations'} value={this.state.eventOrg} onChange={(e) => this.handleEOrg(e)}>
+                <SelectField label={'Organizations'} value={this.state.eventOrg} onChange={(e) => this.handleEOrg(e)}>
                     <Option value='Dr6QtXWIFDVI8LPJ8M1NnlVca4k2'>University of Washington</Option>
                     <Option value='NHXvcYwIUyaEQaH1KaR9tLj8cm13'>Ethinic Cultural Community</Option>    
             

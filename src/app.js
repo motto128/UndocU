@@ -46,11 +46,11 @@ class App extends React.Component {
       {this.state.userId ?
       <div>
         <Layout fixedHeader fixedDrawer id='background'>
-          <Header title="UndocUHelp">
+          <Header id='head' title="UndocUHelp">
               
-              <Navigation id='nav'>
+              <Navigation>
                       <a href="#/home">HOME</a>
-                      <a href="#/resources">RESOURCES</a>
+                      <a href="#/resources">EVENTS</a>
                       <a href="#/organization">ORGANIZATIONS</a>
                       <a href="#/about">ABOUT US</a>
 
@@ -59,7 +59,7 @@ class App extends React.Component {
           </Header>
           
          
-          <Drawer title="Admin Settings" id='drawer'>
+          <Drawer title="Admin Settings">
             <Navbar/>
           </Drawer>
           
@@ -75,9 +75,9 @@ class App extends React.Component {
       <Layout fixedHeader id='background'>
         <Header title="UndocUHelp">
             
-            <Navigation id='nav' >
+            <Navigation>
                     <a href="#/home">HOME</a>
-                    <a href="#/resources">RESOURCES</a>
+                    <a href="#/resources">EVENTS</a>
                     <a href="#/organization">ORGANIZATIONS</a>
                     <a href="#/about">ABOUT US</a>
                     <a href="#/login">REGISTER / LOGIN</a>

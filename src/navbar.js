@@ -64,9 +64,9 @@ class NavBar extends React.Component {
             </ListItem>
             </div>
             
-            <Link to="/channel/event" activeClassName="active"># ADD NEW EVENT</Link>
-            <Link to="/channel/random" activeClassName="active"># ADD NEW RESOURSE</Link>
-            <Link to="/myEvents" activeClassName="active"># View Your Posts</Link>
+            <Link to="/channel/event" activeClassName="active">ADD NEW EVENT</Link>
+            <Link to="/profile" activeClassName="active">ACCOUNT SETTINGS</Link>
+            <Link to="/myEvents" activeClassName="active">VIEW YOUR POSTS</Link>
             
             
             <div>

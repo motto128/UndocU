@@ -4,7 +4,7 @@ class Channel extends React.Component {
   render() {
     return (
       
-      <div className='welcome'id='center'>    
+      <div id='centerChan'>    
         <h1>Welcome to UndocUHelp Portal</h1>
         <div>
           <p>
