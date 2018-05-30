@@ -113,6 +113,7 @@ class ChannelBox extends React.Component {
             eLink: this.state.eventLink,
             eDescr: this.state.eventDescr,
             eEmail: this.state.eventEmail,
+            img: 'url(https://socialwork.uw.edu/sites/default/files/sswfiles/brand/Convio/Convio_Email_Banner_UW.jpg)',
             userId: firebase.auth().currentUser.uid, //to look up channel info
             time: firebase.database.ServerValue.TIMESTAMP //MAGIC
         };
