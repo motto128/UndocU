@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import { Card, CardActions, CardText, CardTitle, Button} from 'react-mdl';
+import { Card, CardActions, Grid, Cell, CardText, CardTitle, Button} from 'react-mdl';
 import {SelectField, Option} from 'react-mdl-extra';
 import firebase from 'firebase';
 import "firebase/firestore";
@@ -33,6 +33,7 @@ class Resources extends React.Component {
                 
                 postArray.sort((a,b) => b.time - a.time); //reverse order
                 this.setState({items:postArray});
+                
             });
     }
 
@@ -109,30 +110,38 @@ class Resources extends React.Component {
             <h2>Events</h2>
             <div id='center' >
 
-                {/*<City/>*/}
-                <div id='center' >
-                <SelectField label={'Categories'} value={this.state.eventTag} onChange={(e) => this.handleETag(e)}>
+                
+                
+                <Grid id='grid2'>
+                <Cell>
+                <SelectField class ='tag' label={'Categories'} value={this.state.eventTag} onChange={(e) => this.handleETag(e)}>
                     <Option value={1}>Educational</Option>
                     <Option value={2}>Legal</Option>
                     <Option value={3}>Social</Option>
                     <Option value={4}>Other</Option>
                 </SelectField>
-               
-                    
+                </Cell>
+
+                <Cell>  
                 <SelectField label={'Organizations'} value={this.state.eventOrg} onChange={(e) => this.handleEOrg(e)}>
                     <Option value='Dr6QtXWIFDVI8LPJ8M1NnlVca4k2'>University of Washington</Option>
-                    <Option value='NHXvcYwIUyaEQaH1KaR9tLj8cm13'>Ethinic Cultural Community</Option> 
+                    <Option value='NHXvcYwIUyaEQaH1KaR9tLj8cm13'>Ethnic Cultural Center</Option> 
                     <Option value='FZdn5VEklTbuYw8uPYHIBw0vnNk2'>Latino/a Educational Achievement Project</Option>
                     <Option value='0qjkZfVUEKMXH0G6u1AGW0a6n0o1'>Northwest Immigrant Rights Project</Option>
                     <Option value='mg1RLR7acdXzI7Lk3ZwXjV2KERI2'>Latino Community Fund</Option>
                     <Option value='TJB7rNatnQNMtIh1WDoMSCH0Mih2'>21 Progress</Option>
             
                 </SelectField>
+                </Cell>
+
+                <Cell>
                 <SelectField label={'Date'} value={this.state.eventTime} onChange={(e) => this.handleETime(e)}>
                     <Option value='C'>Closest Date</Option>
                     <Option value='F'>Furthest Date</Option> 
                 </SelectField>
-            </div>
+                </Cell>
+                </Grid>
+            
             </div>
             {this.state.items.map((item) => { return (
                                   

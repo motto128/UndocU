@@ -67,7 +67,7 @@ class NavBar extends React.Component {
             </div>
             
             <Link to="/channel/event" activeClassName="active">ADD NEW EVENT</Link>
-            <Link to="/profile" activeClassName="active">ACCOUNT SETTINGS</Link>
+            {/*<Link to="/profile" activeClassName="active">ACCOUNT SETTINGS</Link>*/}
             <Link to="/myEvents" activeClassName="active">VIEW YOUR POSTS</Link>
             
             

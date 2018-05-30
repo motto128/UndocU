@@ -19,7 +19,7 @@ import Channel from './channel';
 import ChannelBox from './channelbox';
 import MyEvents from './myEvents';
 import Organization from './organization';
-import Profile from './profile';
+//import Profile from './profile';
 
 
 
@@ -49,7 +49,7 @@ ReactDOM.render(
       <Route path="/channels" component={Channel} />
       <Route path="/channel/:channelId" component={ChannelBox} />
       <Route path="/myEvents" component={MyEvents} />
-      <Route path="/profile" component={Profile} />
+      {/*<Route path="/profile" component={Profile} />*/}
     </Route>
   </Router>
   
