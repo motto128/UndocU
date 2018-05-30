@@ -1,7 +1,7 @@
 import React  from 'react';
 import './index.css';
 import { hashHistory } from 'react-router';
-import { Card, Textfield, Button, List, ListItem, Dialog, DialogContent, DialogTitle, DialogActions} from 'react-mdl';
+import { Card, Textfield, Grid, Cell, Button, List, ListItem, Dialog, DialogContent, DialogTitle, DialogActions} from 'react-mdl';
 import firebase from 'firebase';
 import { SelectField, Option } from 'react-mdl-extra';
 import DatePicker from 'react-datepicker';
@@ -16,20 +16,26 @@ class ChannelBox extends React.Component {
                 eventName:'',
                 eventTag:'',
                 eventDate: moment(),
+                eventDate2: '',
+                eventSTime:'',
+                eventETime:'',
                 eventLoc:'',
-                //eventCity:'',
                 eventLink:'',
-                eventDescr:''
+                eventDescr:'',
+                eventEmail:''
                 
             
         };
         this.handleEName = this.handleEName.bind(this);
         this.handleETag = this.handleETag.bind(this);
-    	this.handleEDate = this.handleEDate.bind(this);
+        this.handleEDate = this.handleEDate.bind(this);
+        this.handleESTime = this.handleESTime.bind(this);
+        this.handleEETime = this.handleEETime.bind(this);
         this.handleELoc = this.handleELoc.bind(this);
         //this.handleECity = this.handleELoc.bind(this);
     	this.handleELink = this.handleELink.bind(this);
         this.handleEDescr = this.handleEDescr.bind(this);
+        this.handleEEmail = this.handleEEmail.bind(this);
         
         this.handleOpenDialog = this.handleOpenDialog.bind(this);
         this.handleCloseDialog = this.handleCloseDialog.bind(this);
@@ -42,14 +48,27 @@ class ChannelBox extends React.Component {
         this.setState({eventTag: e});
     }
     handleEDate(e) {
+        //var dDformat = e.format('LL'); 
+        //var dDformat2 = e.format('L'); 
         this.setState({eventDate: e});
+        //this.setState({eventDate2: dDformat2});
+        //console.log(dDformat);
+    }
+    handleESTime(e) {
+        //var dSformat = e.format('LT'); 
+        this.setState({eventSTime: e});
+        
+    }
+    handleEETime(e) {
+        //var dEformat = e.format('LT'); 
+        this.setState({eventETime: e});
     }
     handleELoc(e) {
         this.setState({eventLoc: e.target.value});
     }
-    //handleECity(e) {
-      //  this.setState({eventLoc: e.target.value});
-    //}
+    handleEEmail(e) {
+        this.setState({eventEmail: e.target.value});
+    }
     handleELink(e) {
         this.setState({eventLink: e.target.value});
     }
@@ -74,16 +93,26 @@ class ChannelBox extends React.Component {
         /* Add a new Channel to the database */
         var channelName = this.props.params.channelId;
         console.log(this.props.params.channelId);
-        var d = this.state.eventDate.toString();
+        var d = this.state.eventDate.format('L').toString();
+        var d2 = this.state.eventDate.format('LL').toString();
+        var start = this.state.eventSTime.format('LT').toString();
+        var end = this.state.eventETime.format('LT').toString();
         var postRef = firebase.database().ref('channel/'+channelName); //the channel in the JOITC
         var newPost = {
             eName: this.state.eventName,
+            //eDate: this.state.eventDate,
+            //eDate2: this.state.eventDate2,
             eDate: d,
+            eDate2: d2,
+            //eSTime: this.state.eventSTime,
+            eSTime: start,
+            //eETime: this.state.eventETime,
+            eETime: end,
             eTag: this.state.eventTag,
             eLoc: this.state.eventLoc,
-            //eCity: this.state.eventCity,
             eLink: this.state.eventLink,
             eDescr: this.state.eventDescr,
+            eEmail: this.state.eventEmail,
             userId: firebase.auth().currentUser.uid, //to look up channel info
             time: firebase.database.ServerValue.TIMESTAMP //MAGIC
         };
@@ -94,9 +123,13 @@ class ChannelBox extends React.Component {
             eventName:'',
             eventTag:'',
             eventDate: moment(),
+            eventDate2: '',
+            eventSTime: '',
+            eventETime: '',
             eventLoc:'',
             eventLink:'',
-            eventDescr:''
+            eventDescr:'',
+            eventEmail:''
             
          })
     }
@@ -114,18 +147,48 @@ class ChannelBox extends React.Component {
                     <div id='card'>
                     <Card id='post'>
                     <div id='card'>
-                        <List id='center'>
-                            <p>Choose date and time of event:</p>
-                            <ListItem>
+                        
+                            <p id='dateText'>Choose date and time of event:</p>
+                           
+                            <Grid id='grid'>
+                            <Cell id='cellD'>
                             
                             <DatePicker 
                             inline selected={this.state.eventDate} 
                             onChange={(e) => this.handleEDate(e)}
-                            showTimeSelect
-                            
+                            //dateFormat="YYYY/MM/DD"               
                             />
-                            </ListItem>
-
+                            
+                            </Cell>
+                            <Cell id='cellST'>
+                            <div id='center'>
+                            <DatePicker
+                               inline selected={this.state.eventSTime}
+                                onChange={(e) => this.handleESTime(e)}
+                                showTimeSelect
+                                showTimeSelectOnly
+                                timeIntervals={30}
+                                timeCaption="Start"
+                                dateFormat="LT"
+                            />
+                            </div>
+                            </Cell>
+                            <Cell id='cellET'>
+                            <div id='center'>
+                            <DatePicker
+                                inline selected={this.state.eventETime}
+                                onChange={(e) => this.handleEETime(e)}
+                                showTimeSelect
+                                showTimeSelectOnly
+                                timeIntervals={30}
+                                timeCaption="End"
+                                dateFormat="LT"
+                            />
+                            </div>
+                            </Cell>
+                            </Grid>
+                            
+                            <List id='center'>
                             <ListItem>
                             <SelectField label={'Choose catigory'} value={this.state.eventTag} onChange={(e) => this.handleETag(e)}>
                                 <Option value={1}>Educational</Option>
@@ -152,6 +215,16 @@ class ChannelBox extends React.Component {
                                 onChange={(e) => this.handleELoc(e)}
                                 value={this.state.eventLoc}
                                 label="Address of Event"
+                                floatingLabel
+                                style={{width: '400px'}}
+                            />
+                            </ListItem>
+
+                            <ListItem>
+                            <Textfield
+                                onChange={(e) => this.handleEEmail(e)}
+                                value={this.state.eventEmail}
+                                label="Contact Email"
                                 floatingLabel
                                 style={{width: '400px'}}
                             />

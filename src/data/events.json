@@ -184,7 +184,7 @@
         }, 
         "Address" : 
         {
-            "Street_Address": "113 23rd Ave S. ", 
+            "Street_Address": "113 23rd Ave Seattle, Washington 98144", 
             "City": "Seattle",
             "State": "WA",
             "Zip_Code": "98144"

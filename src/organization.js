@@ -19,11 +19,11 @@ class Organization extends React.Component {
                 <CardText>
                         {row.Descr}
                         <br/><br/>
-                        Phone Number: {row.Contact.Phone_Number}
+                        <b>Phone Number:</b>{row.Contact.Phone_Number}
                         <br/><br/>
-                        Email: {row.Contact.Email}
+                        <b>Email:</b> {row.Contact.Email}
                         <br/><br/>
-                        Street Address: {row.Address.Street_Address}
+                        <b>Street Address:</b> {row.Address.Street_Address}
                     </CardText>
                     <CardActions border>
                         <Button colored href={row.Link}>Read More</Button>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link} from 'react-router';
 import { Navigation, Button, ListItem, ListItemContent} from 'react-mdl';
 import firebase from 'firebase';
+import {hashHistory } from 'react-router';
 //top level Navbar for the app
 class NavBar extends React.Component {
   
@@ -47,7 +48,8 @@ class NavBar extends React.Component {
   }
 
   logout() {
-    firebase.auth().signOut();
+    firebase.auth().signOut().then(() => hashHistory.push('/login'))
+    .catch((err) => console.log(err)); 
   }
 
   render() {

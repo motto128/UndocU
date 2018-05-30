@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import { Link, hashHistory } from 'react-router'
+import { Link, hashHistory } from 'react-router';
 import { Textfield, Button, List, ListItem, Card} from 'react-mdl';
 import firebase from 'firebase';
 //import MediaQuery from 'react-responsive';

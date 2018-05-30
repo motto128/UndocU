@@ -14,6 +14,10 @@
     margin: auto;
     width: 50%;
 }
+#center2 {
+    margin: auto;
+    width: 80%;
+}
 
 #centerChan {
     margin: auto;
@@ -88,4 +92,24 @@ h2 {
 
 #background {
     background-color: #F0F8FF;
+}
+
+#dateText{
+    font-size: 16px;
+    font-family: "Helvetica", "Arial", sans-serif;
+    text-align: center;
+    color: rgba(0,0,0, 0.26);
+}
+
+#cellD {
+    width: calc(50% - 16px);
+}
+#cellST {
+    width: calc(25% - 16px);
+}
+#cellET {
+    width: calc(25% - 16px);
+}
+#grid {
+    width: 450px;
 }
